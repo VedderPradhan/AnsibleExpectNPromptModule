@@ -1,0 +1,25 @@
+---
+
+- hosts: all
+
+  vars_prompt:
+    - name: ip1
+      prompt: "Enter IP1"
+      private: no
+
+    - name: ip2
+      prompt: "Enter IP2"
+      private: no
+    
+    - name: ip3
+      prompt: "Enter IP3"
+      private: no
+  
+  tasks:
+   - name: expect module implement
+     expect:
+       command: /home/ubuntu2/ask-ips
+       responses:
+         (.*)Enter IP1(.*): "{{ ip1 }}" 
+         (.*)Enter IP2(.*): "{{ ip2 }}"
+         (.*)Enter IP3(.*): "{{ ip3 }}"

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+inventoryFile="${1}-inv"
+echo $inventoryFile
+echo "[Main]" > ${inventoryFile}
+echo "${1}" >> ${inventoryFile}
+echo "[Stand-by]" >> ${inventoryFile}
+echo "${2}" >> ${inventoryFile}
+
+ansible-playbook -i $inventoryFile expectNpromptTest.yml --ask-pass
+
+rm $inventoryFile
